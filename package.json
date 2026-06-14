@@ -1,0 +1,17 @@
+{
+  "name": "shopez-root",
+  "version": "1.0.0",
+  "description": "Root package for running ShopEZ client and server",
+  "scripts": {
+    "install-all": "npm install && npm run install-server && npm run install-client",
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "seed": "cd server && node scripts/seed.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
