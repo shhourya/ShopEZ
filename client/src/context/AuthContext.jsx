@@ -4,7 +4,7 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 // Set base URL for API calls
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = 'https://shopez-b859.onrender.com/api';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
