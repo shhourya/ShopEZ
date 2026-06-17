@@ -35,13 +35,22 @@ const protect = async (req, res, next) => {
   }
 };
 
-// Middleware to verify seller status
+// Middleware to verify seller status (allows admins too)
 const seller = (req, res, next) => {
-  if (req.user && req.user.role === 'seller') {
+  if (req.user && (req.user.role === 'seller' || req.user.role === 'admin')) {
     next();
   } else {
-    res.status(403).json({ message: 'Not authorized as a seller' });
+    res.status(403).json({ message: 'Not authorized as a seller or admin' });
   }
 };
 
-module.exports = { protect, seller };
+// Middleware to verify admin status
+const admin = (req, res, next) => {
+  if (req.user && req.user.role === 'admin') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Not authorized as an admin' });
+  }
+};
+
+module.exports = { protect, seller, admin };

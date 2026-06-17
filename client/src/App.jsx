@@ -12,6 +12,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Orders from './pages/Orders';
+import AdminRoute from './components/AdminRoute';
+import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   return (
@@ -33,6 +35,12 @@ function App() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/orders" element={<Orders />} />
+                
+                {/* Admin Dashboard Protected Routes */}
+                <Route path="/admin" element={<AdminRoute><AdminDashboard view="overview" /></AdminRoute>} />
+                <Route path="/admin/users" element={<AdminRoute><AdminDashboard view="users" /></AdminRoute>} />
+                <Route path="/admin/products" element={<AdminRoute><AdminDashboard view="products" /></AdminRoute>} />
+                <Route path="/admin/orders" element={<AdminRoute><AdminDashboard view="orders" /></AdminRoute>} />
               </Routes>
             </main>
 

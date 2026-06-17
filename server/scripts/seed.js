@@ -202,6 +202,14 @@ const seedDB = async () => {
       role: 'customer',
     });
 
+    // Create a mock admin
+    await User.create({
+      name: 'System Admin',
+      email: 'admin@shopez.com',
+      password: 'password123', // Will be hashed in pre-save hook
+      role: 'admin',
+    });
+
     console.log('Mock Users created.');
 
     // Seed products with the seller's ID

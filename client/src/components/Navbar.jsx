@@ -52,6 +52,15 @@ const Navbar = () => {
                 Seller Panel
               </Link>
             )}
+            {user && user.role === 'admin' && (
+              <Link
+                to="/admin"
+                className="text-emerald-600 hover:text-emerald-800 flex items-center gap-1.5 font-semibold bg-emerald-50 px-3 py-1.5 rounded-lg transition-all"
+              >
+                <LayoutDashboard size={18} />
+                Admin Panel
+              </Link>
+            )}
           </div>
 
           {/* Desktop User Actions */}
@@ -146,6 +155,15 @@ const Navbar = () => {
               className="block px-3 py-2 rounded-md text-base font-semibold text-indigo-600 hover:bg-indigo-50"
             >
               Seller Dashboard
+            </Link>
+          )}
+          {user && user.role === 'admin' && (
+            <Link
+              to="/admin"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-md text-base font-semibold text-emerald-600 hover:bg-emerald-50"
+            >
+              Admin Panel
             </Link>
           )}
 

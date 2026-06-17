@@ -97,8 +97,8 @@ router.put('/:id', protect, seller, async (req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      // Check if product belongs to the seller
-      if (product.seller.toString() !== req.user._id.toString()) {
+      // Check if product belongs to the seller or user is admin
+      if (product.seller.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
         return res.status(403).json({ message: 'User not authorized to edit this product' });
       }
 
@@ -127,8 +127,8 @@ router.delete('/:id', protect, seller, async (req, res, next) => {
     const product = await Product.findById(req.params.id);
 
     if (product) {
-      // Check if product belongs to the seller
-      if (product.seller.toString() !== req.user._id.toString()) {
+      // Check if product belongs to the seller or user is admin
+      if (product.seller.toString() !== req.user._id.toString() && req.user.role !== 'admin') {
         return res.status(403).json({ message: 'User not authorized to delete this product' });
       }
 
