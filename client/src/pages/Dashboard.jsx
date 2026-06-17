@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { DollarSign, Package, ShoppingCart, TrendingUp, Trash2, Plus, Edit2, AlertCircle, CheckCircle2, X } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -172,7 +173,7 @@ const Dashboard = () => {
           </div>
           <div>
             <span className="text-xs text-slate-400 block font-medium">Total Revenue</span>
-            <span className="text-xl font-extrabold text-slate-950">${stats.totalRevenue.toFixed(2)}</span>
+            <span className="text-xl font-extrabold text-slate-950">{formatCurrency(stats.totalRevenue)}</span>
           </div>
         </div>
 
@@ -250,7 +251,7 @@ const Dashboard = () => {
                     <td className="py-4 px-6 font-semibold text-xs text-slate-600">{prod.category}</td>
 
                     {/* Price Column */}
-                    <td className="py-4 px-6 font-extrabold text-slate-850">${prod.price.toFixed(2)}</td>
+                    <td className="py-4 px-6 font-extrabold text-slate-850">{formatCurrency(prod.price)}</td>
 
                     {/* Stock Column with Quick Editing inline */}
                     <td className="py-4 px-6">
@@ -353,11 +354,11 @@ const Dashboard = () => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Price ($)</label>
+                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Price (₹)</label>
                   <input
                     type="number"
-                    step="0.01"
-                    placeholder="e.g. 199.99"
+                    step="1"
+                    placeholder="e.g. 999"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all text-xs"

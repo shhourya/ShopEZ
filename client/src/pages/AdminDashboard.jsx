@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { Users, Package, ShoppingCart, ShieldCheck, UserCheck, Trash2, Edit2, Plus, AlertCircle, CheckCircle2, RefreshCw, Calendar, MapPin, X } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const AdminDashboard = ({ view }) => {
   const { user } = useContext(AuthContext);
@@ -345,7 +346,7 @@ const AdminDashboard = ({ view }) => {
                             </div>
                           </td>
                           <td className="py-4 px-6 text-xs font-semibold text-slate-650">{prod.category}</td>
-                          <td className="py-4 px-6 font-extrabold">${prod.price.toFixed(2)}</td>
+                          <td className="py-4 px-6 font-extrabold">{formatCurrency(prod.price)}</td>
                           <td className="py-4 px-6">
                             {editingStockId === prod._id ? (
                               <div className="flex items-center gap-1.5">
@@ -432,7 +433,7 @@ const AdminDashboard = ({ view }) => {
                     </div>
                     <div>
                       <span className="font-bold text-slate-400 uppercase tracking-wider block">Total Amount</span>
-                      <span className="text-slate-900 font-black">${order.totalPrice.toFixed(2)}</span>
+                      <span className="text-slate-905 font-black">{formatCurrency(order.totalPrice)}</span>
                     </div>
                     <div>
                       <span className={`font-bold px-3 py-1 rounded-full border text-[10px] ${getStatusColor(order.status)}`}>
@@ -451,7 +452,7 @@ const AdminDashboard = ({ view }) => {
                           </div>
                           <div className="flex-grow">
                             <span className="font-bold text-slate-800 text-sm block line-clamp-1">{item.name}</span>
-                            <span className="text-[10px] text-slate-400">${item.price.toFixed(2)} x {item.quantity}</span>
+                            <span className="text-[10px] text-slate-400">{formatCurrency(item.price)} x {item.quantity}</span>
                           </div>
                         </div>
                       ))}
@@ -502,11 +503,11 @@ const AdminDashboard = ({ view }) => {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Price ($)</label>
+                  <label className="text-xs font-bold text-slate-600 uppercase tracking-wider block">Price (₹)</label>
                   <input
                     type="number"
-                    step="0.01"
-                    placeholder="e.g. 199.99"
+                    step="1"
+                    placeholder="e.g. 999"
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     className="w-full bg-slate-50 border border-slate-200 text-slate-800 px-4 py-3 rounded-xl focus:ring-2 focus:ring-primary-500 focus:bg-white focus:outline-none transition-all text-xs"

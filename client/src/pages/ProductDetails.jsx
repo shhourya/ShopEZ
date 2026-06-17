@@ -4,6 +4,7 @@ import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { CartContext } from '../context/CartContext';
 import { Star, ShoppingCart, MessageSquare, AlertCircle, Sparkles, Check, CornerDownRight } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -133,7 +134,7 @@ const ProductDetails = () => {
 
           {/* Price & Stock */}
           <div className="flex items-baseline gap-4 py-2 border-y border-slate-100">
-            <span className="text-3xl font-extrabold text-slate-900">${product.price.toFixed(2)}</span>
+            <span className="text-3xl font-extrabold text-slate-900">{formatCurrency(product.price)}</span>
             {isOutOfStock ? (
               <span className="text-sm text-rose-600 font-bold bg-rose-50 px-3.5 py-1 rounded-full uppercase">
                 Out of Stock

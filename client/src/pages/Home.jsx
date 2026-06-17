@@ -128,7 +128,7 @@ const Home = () => {
             </div>
             <div>
               <h3 className="font-bold text-slate-800 text-base mb-1">Free & Fast Shipping</h3>
-              <p className="text-xs text-slate-500 leading-relaxed">Free delivery on all orders over $150. Packaged securely.</p>
+              <p className="text-xs text-slate-500 leading-relaxed">Free delivery on all orders over ₹10,000. Packaged securely.</p>
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center gap-4">

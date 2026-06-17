@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { AlertCircle, CheckCircle, Package, Truck, ClipboardList, RefreshCw, Calendar, MapPin, User as UserIcon } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const Orders = () => {
   const { user } = useContext(AuthContext);
@@ -134,7 +135,7 @@ const Orders = () => {
                 </div>
                 <div className="space-y-1">
                   <span className="font-bold text-slate-400 uppercase tracking-wider block">Total Amount</span>
-                  <span className="text-slate-900 font-black text-sm">${order.totalPrice.toFixed(2)}</span>
+                  <span className="text-slate-900 font-black text-sm">{formatCurrency(order.totalPrice)}</span>
                 </div>
                 <div>
                   <span className={`font-bold px-3 py-1.5 rounded-full border text-xs ${getStatusColor(order.status)}`}>
@@ -157,12 +158,12 @@ const Orders = () => {
                         <div className="flex-grow">
                           <span className="font-bold text-slate-800 text-sm block line-clamp-1">{item.name}</span>
                           <span className="text-xs text-slate-400">
-                            ${item.price.toFixed(2)} x {item.quantity}
+                            {formatCurrency(item.price)} x {item.quantity}
                           </span>
                         </div>
                         <div className="text-right">
                           <span className="font-extrabold text-slate-900 text-sm">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatCurrency(item.price * item.quantity)}
                           </span>
                         </div>
                       </div>

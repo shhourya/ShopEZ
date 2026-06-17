@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { Star, ShoppingCart } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
@@ -66,7 +67,7 @@ const ProductCard = ({ product }) => {
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100">
           <div>
             <span className="text-xs text-slate-400 block">Price</span>
-            <span className="text-lg font-extrabold text-slate-900">${product.price.toFixed(2)}</span>
+            <span className="text-lg font-extrabold text-slate-900">{formatCurrency(product.price)}</span>
           </div>
 
           <button

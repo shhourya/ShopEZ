@@ -119,7 +119,7 @@ async function runHealthCheck() {
       },
       body: JSON.stringify({
         name: 'Verify Comfort Chair',
-        price: 99.99,
+        price: 4999,
         description: 'Temporary verification item',
         category: 'Home & Living',
         image: 'https://images.unsplash.com/photo-1580481072645-022f9a6dbf27',
@@ -172,7 +172,7 @@ async function runHealthCheck() {
           },
         ],
         shippingAddress: '123 Verification St, Test City, TS 99999',
-        totalPrice: testProduct.price * 2 + 15.0, // grand total simulation
+        totalPrice: Math.round((testProduct.price * 2) * 1.18) + (testProduct.price * 2 > 10000 ? 0 : 150), // grand total simulation (INR)
       }),
     });
     if (placeOrderRes.ok) {

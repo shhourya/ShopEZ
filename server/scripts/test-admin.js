@@ -168,7 +168,7 @@ async function runAdminTest() {
       },
       body: JSON.stringify({
         name: 'Seller Chair',
-        price: 49.99,
+        price: 2499,
         description: 'Product owned by seller',
         category: 'Home & Living',
         image: 'https://images.unsplash.com/photo-1580481072645-022f9a6dbf27',

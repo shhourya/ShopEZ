@@ -4,6 +4,7 @@ import { CartContext } from '../context/CartContext';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import { Trash2, ShoppingBag, ArrowRight, MapPin, CheckCircle2, AlertCircle } from 'lucide-react';
+import { formatCurrency } from '../utils/format';
 
 const Cart = () => {
   const { cartItems, updateQuantity, removeFromCart, clearCart, cartTotal } = useContext(CartContext);
@@ -15,8 +16,8 @@ const Cart = () => {
   const [checkoutSuccess, setCheckoutSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const shippingCost = cartTotal > 150 || cartTotal === 0 ? 0.0 : 15.0;
-  const taxCost = cartTotal * 0.08; // 8% sales tax
+  const shippingCost = cartTotal > 10000 || cartTotal === 0 ? 0.0 : 150.0;
+  const taxCost = cartTotal * 0.18; // 18% GST rate
   const grandTotal = cartTotal + shippingCost + taxCost;
 
   const handleCheckoutSubmit = async (e) => {
@@ -117,7 +118,7 @@ const Cart = () => {
                       <Link to={`/products/${item.product}`} className="font-bold text-slate-850 hover:text-primary-600 text-sm sm:text-base transition-colors line-clamp-1">
                         {item.name}
                       </Link>
-                      <span className="text-xs text-slate-400 block mt-0.5">Price: ${item.price.toFixed(2)}</span>
+                      <span className="text-xs text-slate-400 block mt-0.5">Price: {formatCurrency(item.price)}</span>
                     </div>
 
                     <div className="flex items-center gap-3 justify-start sm:justify-end">
@@ -149,7 +150,7 @@ const Cart = () => {
             </div>
             <div className="bg-slate-50 px-5 py-4 flex justify-between items-center border-t border-slate-100">
               <span className="text-xs text-slate-500 font-medium">Subtotal for {cartItems.length} items</span>
-              <span className="text-base font-extrabold text-slate-900">${cartTotal.toFixed(2)}</span>
+              <span className="text-base font-extrabold text-slate-900">{formatCurrency(cartTotal)}</span>
             </div>
           </div>
         </div>
@@ -162,21 +163,21 @@ const Cart = () => {
             <div className="space-y-2.5 text-xs text-slate-600">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span className="font-semibold text-slate-800">${cartTotal.toFixed(2)}</span>
+                <span className="font-semibold text-slate-800">{formatCurrency(cartTotal)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Shipping</span>
                 <span className="font-semibold text-slate-800">
-                  {shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}
+                  {shippingCost === 0 ? 'Free' : formatCurrency(shippingCost)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span>Estimated Tax (8%)</span>
-                <span className="font-semibold text-slate-800">${taxCost.toFixed(2)}</span>
+                <span>Estimated Tax (18% GST)</span>
+                <span className="font-semibold text-slate-800">{formatCurrency(taxCost)}</span>
               </div>
               <div className="flex justify-between text-sm font-extrabold text-slate-900 pt-3 border-t border-slate-100">
                 <span>Total</span>
-                <span>${grandTotal.toFixed(2)}</span>
+                <span>{formatCurrency(grandTotal)}</span>
               </div>
             </div>
           </div>
